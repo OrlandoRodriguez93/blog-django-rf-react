@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Error404 from "containers/errors/Error404";
+import Home from "containers/pages/Home";
+import store from "./store";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Blog from "containers/pages/blog/Blog";
+import BlogPost from "containers/pages/blog/BlogPost";
+import BlogCategory from "containers/pages/blog/category/BlogCategory";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return ( 
+        <Provider store={store}>
+            <Router>
+                <Routes>
+                    {/*Error display */}
+                    <Route path="*" element={<Error404/>}/>
+
+                    {/*Home display */}
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/blog" element={<Blog/>}/>
+                    <Route path="/blog/post/:slug" element={<BlogPost/>}/>
+                    <Route path="/blog/categories/:category_id" element={<BlogCategory/>}/>
+                </Routes>
+            </Router>
+        </Provider>
+    );
 }
 
 export default App;
