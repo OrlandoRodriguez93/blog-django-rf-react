@@ -3,7 +3,7 @@ import SmallSetPagination from "components/pagination/SmallSetPagination";
 import { connect } from "react-redux"
 import BlogCard from "./BlogCard";
 
-function BlogList({
+function BlogListSearch({
     blog_list,
     get_blog_list_page,
     count
@@ -38,8 +38,8 @@ function BlogList({
 }
 
 const mapStateToProps = state => ({
-    
+    count: state.blog.count
 })
 
 export default connect(mapStateToProps, {
-})(BlogList);
+})(BlogListSearch);
